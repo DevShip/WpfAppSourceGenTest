@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>9</LangVersion>
+    <Nullable>enable</Nullable>
+    
+    <AssemblyVersion>1.2.42</AssemblyVersion>
+    <FileVersion>$(AssemblyVersion)</FileVersion>
+    <Version>$(AssemblyVersion)</Version>
+
+    <AssemblyName>TinyINPC.SourceGenerator</AssemblyName>
+    <RootNamespace>Generators</RootNamespace>
+
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <!-- Generates a package at build -->
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <Description>SourceGenerator implementation INotifyPropertyChanged</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Copyright>Based on repository contains Desktop Bridge samples provided by the Windows AppConsult team.</Copyright>
+    <!-- Do not include the generator as a lib dependency -->
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.9.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.2" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Take a private dependency on Newtonsoft.Json (PrivateAssets=all) Consumers of this generator will not reference it.
+         Set GeneratePathProperty=true so we can reference the binaries via the PKGNewtonsoft_Json property -->
+    <!--<PackageReference Include="Newtonsoft.Json" Version="12.0.1" PrivateAssets="all" GeneratePathProperty="true" />-->
+
+    <!-- Package the generator in the analyzer directory of the nuget package -->
+    <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+
+    <!-- Package the Newtonsoft.Json dependency alongside the generator assembly -->
+    <!--<None Include="$(PkgNewtonsoft_Json)\lib\netstandard2.0\*.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />-->
+  </ItemGroup>
+</Project>
