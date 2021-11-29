@@ -1,28 +1,18 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using Generators;
+﻿using WpfApp.ViewModels;
 
 namespace WpfApp
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : INotifyPropertyChanged
+    public partial class MainWindow
     {
-        [AutoNotify(generateOnChanged: true)]
-        private string _textInput = "HelloWorld!";
+        private readonly MainViewModel _viewModel = new MainViewModel();
 
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = this;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            DataContext = _viewModel;
         }
     }
 }

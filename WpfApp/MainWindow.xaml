@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="{Binding Title}" Height="450" Width="800">
     <StackPanel Orientation="Vertical">
         <TextBox Width="300" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding TextInput,UpdateSourceTrigger=PropertyChanged}" Margin="10"></TextBox>
-        <TextBlock Background="DarkGray" VerticalAlignment="Center" HorizontalAlignment="Center"  FontSize="48" Text="{Binding TextInput}" Margin="10"></TextBlock>
+        <TextBlock Background="DarkGray" VerticalAlignment="Center" HorizontalAlignment="Center"  FontSize="48" Text="{Binding TextOutput}" Margin="10"></TextBlock>
     </StackPanel>
 </Window>
